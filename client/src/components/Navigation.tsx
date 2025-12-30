@@ -1,12 +1,21 @@
 import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
-import { Menu, X, Cpu } from "lucide-react";
+import { Menu, X, Cpu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
+  { 
+    label: "About Us",
+    submenu: [
+      { href: "/about", label: "Overview" },
+      { href: "/about/management", label: "Management" },
+      { href: "/about/core-team", label: "Core Team" },
+      { href: "/about/team-members", label: "Team Members" },
+      { href: "/about/clients-partners", label: "Clients & Partners" },
+    ]
+  },
   { href: "/product", label: "Product" },
   { href: "/services", label: "Services" },
   { href: "/resources", label: "Resources" },
@@ -45,21 +54,59 @@ export function Navigation() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <div
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary cursor-pointer relative py-1",
-                    location === link.href ? "text-primary font-semibold" : "text-muted-foreground"
-                  )}
-                >
-                  {link.label}
-                  {location === link.href && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
-                  )}
-                </div>
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isAboutUs = "submenu" in link;
+              const isActive = !isAboutUs && location === link.href;
+              
+              if (isAboutUs) {
+                return (
+                  <div key="about" className="relative group">
+                    <div className={cn(
+                      "text-sm font-medium transition-colors cursor-pointer relative py-1 flex items-center gap-1",
+                      location.startsWith("/about") ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
+                    )}>
+                      {link.label}
+                      <ChevronDown className="w-4 h-4" />
+                      {location.startsWith("/about") && (
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
+                      )}
+                    </div>
+                    
+                    {/* Dropdown Menu */}
+                    <div className="absolute left-0 mt-0 w-48 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-40">
+                      {link.submenu?.map((item) => (
+                        <Link key={item.href} href={item.href}>
+                          <div className={cn(
+                            "px-4 py-3 text-sm font-medium border-b border-slate-100 last:border-b-0 transition-colors cursor-pointer",
+                            location === item.href 
+                              ? "bg-primary/10 text-primary" 
+                              : "text-slate-700 hover:bg-slate-50 hover:text-primary"
+                          )}>
+                            {item.label}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+              
+              return (
+                <Link key={link.href} href={link.href}>
+                  <div
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-primary cursor-pointer relative py-1",
+                      isActive ? "text-primary font-semibold" : "text-muted-foreground"
+                    )}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
             <Link href="/contact">
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-medium shadow-md shadow-primary/20">
                 Get Started

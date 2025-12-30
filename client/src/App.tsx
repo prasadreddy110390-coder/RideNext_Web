@@ -9,6 +9,10 @@ import NotFound from "@/pages/not-found";
 
 import Home from "@/pages/Home";
 import About from "@/pages/About";
+import Management from "@/pages/About/Management";
+import CoreTeam from "@/pages/About/CoreTeam";
+import TeamMembers from "@/pages/About/TeamMembers";
+import ClientsPartners from "@/pages/About/ClientsPartners";
 import Product from "@/pages/Product";
 import Services from "@/pages/Services";
 import Resources from "@/pages/Resources";
@@ -22,6 +26,10 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/about/management" component={Management} />
+      <Route path="/about/core-team" component={CoreTeam} />
+      <Route path="/about/team-members" component={TeamMembers} />
+      <Route path="/about/clients-partners" component={ClientsPartners} />
       <Route path="/product" component={Product} />
       <Route path="/services" component={Services} />
       <Route path="/resources" component={Resources} />
