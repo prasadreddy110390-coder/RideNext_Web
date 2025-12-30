@@ -16,9 +16,35 @@ const links = [
       { href: "/about/clients-partners", label: "Clients & Partners" },
     ]
   },
-  { href: "/product", label: "Product" },
-  { href: "/services", label: "Services" },
-  { href: "/resources", label: "Resources" },
+  {
+    label: "Product",
+    submenu: [
+      { href: "/product", label: "Overview" },
+      { href: "/product/asn-decoder", label: "ASN Decoder" },
+      { href: "/product/simulator", label: "Simulator" },
+    ]
+  },
+  {
+    label: "Services",
+    submenu: [
+      { href: "/services", label: "Overview" },
+      { href: "/wireless", label: "Wireless" },
+      { href: "/iot", label: "IoT" },
+      { href: "/services/web-development", label: "Web Development" },
+      { href: "/services/database", label: "Database" },
+      { href: "/services/virtualization", label: "Virtualization" },
+      { href: "/services/testing", label: "Testing" },
+    ]
+  },
+  {
+    label: "Resources",
+    submenu: [
+      { href: "/resources", label: "Overview" },
+      { href: "/resources/wireshark", label: "Wireshark" },
+      { href: "/resources/events", label: "Events" },
+      { href: "/resources/working-at-ridenext", label: "Working@RideNext" },
+    ]
+  },
   { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
@@ -54,20 +80,21 @@ export function Navigation() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {links.map((link) => {
-              const isAboutUs = "submenu" in link;
-              const isActive = !isAboutUs && location === link.href;
+            {links.map((link, idx) => {
+              const hasSubmenu = "submenu" in link;
+              const isActive = !hasSubmenu && location === link.href;
               
-              if (isAboutUs) {
+              if (hasSubmenu) {
+                const prefix = link.label.toLowerCase().replace(/\s+/g, '-');
                 return (
-                  <div key="about" className="relative group">
+                  <div key={prefix} className="relative group">
                     <div className={cn(
                       "text-sm font-medium transition-colors cursor-pointer relative py-1 flex items-center gap-1",
-                      location.startsWith("/about") ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
+                      link.submenu?.some(item => location.startsWith(item.href.split('/').slice(0, -1).join('/'))) ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
                     )}>
                       {link.label}
                       <ChevronDown className="w-4 h-4" />
-                      {location.startsWith("/about") && (
+                      {link.submenu?.some(item => location.startsWith(item.href.split('/').slice(0, -1).join('/'))) && (
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
                       )}
                     </div>
