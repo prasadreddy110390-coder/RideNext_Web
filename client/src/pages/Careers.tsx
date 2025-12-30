@@ -10,6 +10,11 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen">
+      {/* We are Hiring Banner */}
+      <div className="bg-gradient-to-r from-primary to-cyan-500 text-white py-6 text-center">
+        <h1 className="text-3xl md:text-4xl font-display font-bold">We are Hiring</h1>
+      </div>
+
       <PageHeader 
         title="Join Our Team" 
         subtitle="Build the future with us. We're looking for passionate minds to solve complex challenges." 

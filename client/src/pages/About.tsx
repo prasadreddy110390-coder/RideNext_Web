@@ -1,6 +1,8 @@
 import { PageHeader } from "@/components/PageHeader";
-import { CheckCircle2, Target, Users, Zap } from "lucide-react";
+import { CheckCircle2, Target, Users, Zap, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function About() {
   return (
@@ -29,7 +31,46 @@ export default function About() {
         </div>
       </section>
 
-      <section className="py-20 bg-slate-50">
+      {/* Our Organization Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6">
+                Our Organization
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                RideNext is a premier technology company headquartered in Bengaluru, India. We are a leading technology services and solutions provider with best-in-class domain experts, system architects, and engineering teams.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                We are a software solutions and services provider company that has been instrumental in steering the digital transformation journey of our clients. With our innovative solutions and solution accelerators in the areas of Wireless and IoT, we empower enterprises to achieve their goals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/wireless">
+                  <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary/5">
+                    Wireless Solutions <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link href="/iot">
+                  <Button variant="outline" className="gap-2 border-primary text-primary hover:bg-primary/5">
+                    IoT Platform <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" 
+                alt="Organization" 
+                className="w-full object-cover h-[500px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="border-none shadow-lg">
@@ -39,7 +80,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">Our Mission</h3>
                 <p className="text-muted-foreground">
-                  To democratize access to advanced wireless technologies and empower businesses to build smarter, more connected products.
+                  To have a talented 'hands-on' pool of engineers in Wireless, IoT, Cloud and Web Technologies domain and empower our employees, partners and clients to excel and grow together.
                 </p>
               </CardContent>
             </Card>
@@ -50,7 +91,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">Our Vision</h3>
                 <p className="text-muted-foreground">
-                  A world where connectivity is seamless, intelligent, and ubiquitous, driving efficiency and sustainability.
+                  A world where connectivity is seamless, intelligent, and ubiquitous, driving efficiency, innovation and sustainable growth.
                 </p>
               </CardContent>
             </Card>
@@ -61,7 +102,7 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">Our Values</h3>
                 <p className="text-muted-foreground">
-                  Innovation, Integrity, and Customer Success are at the core of everything we do. We believe in collaborative growth.
+                  Innovation, Integrity, and Customer Success are at the core of everything we do. We believe in collaborative growth and excellence.
                 </p>
               </CardContent>
             </Card>
@@ -70,7 +111,7 @@ export default function About() {
       </section>
       
       {/* Team section placeholder */}
-      <section className="py-20">
+      <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6 text-center">
            <h2 className="text-3xl font-display font-bold text-slate-900 mb-12">Leadership</h2>
            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">

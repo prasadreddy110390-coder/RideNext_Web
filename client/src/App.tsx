@@ -14,6 +14,8 @@ import Services from "@/pages/Services";
 import Resources from "@/pages/Resources";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import Wireless from "@/pages/Wireless";
+import IoT from "@/pages/IoT";
 
 function Router() {
   return (
@@ -23,6 +25,8 @@ function Router() {
       <Route path="/product" component={Product} />
       <Route path="/services" component={Services} />
       <Route path="/resources" component={Resources} />
+      <Route path="/wireless" component={Wireless} />
+      <Route path="/iot" component={IoT} />
       <Route path="/careers" component={Careers} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
