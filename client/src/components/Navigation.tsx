@@ -41,11 +41,16 @@ const links = [
     submenu: [
       { href: "/resources", label: "Overview" },
       { href: "/resources/wireshark", label: "Wireshark" },
+    ]
+  },
+  {
+    label: "Careers",
+    submenu: [
+      { href: "/careers", label: "Overview" },
       { href: "/resources/events", label: "Events" },
       { href: "/resources/working-at-ridenext", label: "Working@RideNext" },
     ]
   },
-  { href: "/careers", label: "Careers" },
   { href: "/contact", label: "Contact" },
 ];
 
