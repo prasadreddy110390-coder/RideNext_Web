@@ -15,10 +15,10 @@ export default function WorkingAtRideNext() {
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-8">
-            <Link href="/resources">
+            <Link href="/careers">
               <Button variant="outline" size="sm" className="gap-2">
                 <ChevronLeft className="w-4 h-4" />
-                Back to Resources
+                Back to Careers
               </Button>
             </Link>
           </div>
