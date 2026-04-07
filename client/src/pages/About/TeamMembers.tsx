@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
-
+import { useLocation } from "wouter";
 const departments = [
   {
     name: "Wireless Engineering",
@@ -59,7 +59,7 @@ export default function TeamMembers() {
 
           <div className="max-w-4xl mx-auto mb-16">
             <div className="bg-gradient-to-r from-primary/10 to-cyan-500/10 rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-3xl font-bold text-slate-900 mb-2">70+ Talented Professionals</h3>
+              <h3 className="text-3xl font-bold text-slate-900 mb-2">20+ Talented Professionals</h3>
               <p className="text-lg text-muted-foreground">
                 Our diverse team spans multiple domains including wireless technologies, cloud computing, IoT, quality assurance, and software development.
               </p>

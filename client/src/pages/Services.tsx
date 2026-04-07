@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/PageHeader";
 import { useServices } from "@/hooks/use-services";
 import { Wifi, Cpu, ClipboardCheck, Server, Globe, Shield } from "lucide-react";
-
+import { useLocation } from "wouter";
 const iconMap: Record<string, any> = {
   "wifi": Wifi,
   "cpu": Cpu,
