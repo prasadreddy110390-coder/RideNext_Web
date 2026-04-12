@@ -6,6 +6,7 @@ import Image from "../../public/Life@ridenext/Picture2.png";
 import Image2 from "../../public/Life@ridenext/Picture1.png";
 import Manjunath from "../../public/Life@ridenext/Employees/Manjunath.jpg";
 import SreeKeerthana from "../../public/Life@ridenext/Employees/Sreekeerthana.jpg";
+import Ajit from "../../public/Life@ridenext/Employees/Ajit.jpeg";
 import Prasad from "../../public/Life@ridenext/Employees/Prasad.png";
 import MamathaM from "../../public/Life@ridenext/Employees/MamathaM.jpg";
 import { useState, useEffect } from "react";
@@ -48,6 +49,12 @@ export default function LifeAtRideNext() {
       role: "QA Engineer",
       image: SreeKeerthana,
       message: `"I have an excellent experience working with Ridenext, which consistently provides a supportive and motivating environment. The positive atmosphere encouraged me to upskill and advance my career with confidence. My team has been highly collaborative, always ready to help and share knowledge, which made every project smoother and more enjoyable. The company culture promotes learning, innovation, and professional growth, ensuring that employees feel valued and engaged. Strong leadership and well‑structured processes further enhance productivity and create a sense of stability. Overall, this organization has given me both personal satisfaction and professional development, making it a truly inspiring place to work."`,
+    },
+    {
+      name: "Ajit Kumar",
+      role: "Lead",
+      image: Ajit,
+      message: `"I have been associated with RideNext Soft Solution for the past six years, where I have received ample opportunities to grow and contribute in the field of 5G radio technology. With the guidance of highly supportive team members and mentors, and the unwavering commitment of a management team that upholds strong human values, my journey has been both enriching and rewarding. I was entrusted with opportunities to showcase my talent in 5G radio integration across onsite and offshore projects, which significantly enhanced my expertise and broadened my professional perspective. RideNext Soft Solution has provided an environment that fosters innovation, collaboration, and excellence, making it a truly remarkable place to build a career."`,
     },
   ];
   const scrollingVoices = [...employeeVoices, ...employeeVoices];
