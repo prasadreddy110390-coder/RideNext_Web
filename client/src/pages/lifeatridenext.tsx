@@ -6,7 +6,7 @@ import Image from "../../public/Life@ridenext/Picture2.png";
 import Image2 from "../../public/Life@ridenext/Picture1.png";
 import Manjunath from "../../public/Life@ridenext/Employees/Manjunath.jpg";
 import SreeKeerthana from "../../public/Life@ridenext/Employees/Sreekeerthana.jpg";
-import Ajit from "../../public/Life@ridenext/Employees/Ajit.jpeg";
+import Ajit from "../../public/Life@ridenext/Employees/Ajit.jpg";
 import Prasad from "../../public/Life@ridenext/Employees/Prasad.png";
 import MamathaM from "../../public/Life@ridenext/Employees/MamathaM.jpg";
 import { useState, useEffect } from "react";
