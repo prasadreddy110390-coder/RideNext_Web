@@ -361,28 +361,44 @@ export default function LifeAtRideNext() {
           )}
 
           {/* ================= EMPLOYEE STORIES ================= */}
-          <div className="flex gap-6 [animation:scroll_25s_linear_infinite]">
-            {scrollingVoices.map((emp, i) => (
-              <div
-                key={i}
-                className="min-w-[300px] p-6 border rounded-2xl shadow-sm"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <img
-                    src={emp.image}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h4 className="font-semibold">{emp.name}</h4>
-                    <p className="text-sm text-gray-500">{emp.role}</p>
-                  </div>
-                </div>
 
-                <p className="text-gray-600 text-sm">
-                  {emp.message}
-                </p>
+          <div className="mb-24 overflow-hidden">
+
+            <h3 className="text-3xl font-bold mb-10 text-center">
+              Voices of RideNext
+            </h3>
+
+            {/* Wrapper to prevent page overflow */}
+            <div className="w-full overflow-hidden">
+
+              {/* Scrolling container */}
+              <div className="flex gap-6 w-max animate-scroll hover:[animation-play-state:paused]">
+
+                {scrollingVoices.map((emp, i) => (
+                  <div
+                    key={i}
+                    className="min-w-[300px] max-w-[300px] p-6 border rounded-2xl shadow-sm bg-white flex-shrink-0"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <img
+                        src={emp.image}
+                        className="w-12 h-12 rounded-full object-cover"
+                        alt={emp.name}
+                      />
+                      <div>
+                        <h4 className="font-semibold">{emp.name}</h4>
+                        <p className="text-sm text-gray-500">{emp.role}</p>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {emp.message}
+                    </p>
+                  </div>
+                ))}
+
               </div>
-            ))}
+            </div>
           </div>
 
           {/* ================= HIGHLIGHTS ================= */}
