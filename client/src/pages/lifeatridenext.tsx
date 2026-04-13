@@ -7,6 +7,8 @@ import Image2 from "../../public/Life@ridenext/Picture1.png";
 import Manjunath from "../../public/Life@ridenext/Employees/Manjunath.jpg";
 import SreeKeerthana from "../../public/Life@ridenext/Employees/Sreekeerthana.jpg";
 import Ajit from "../../public/Life@ridenext/Employees/Ajit.jpg";
+import Shubha from "../../public/Life@ridenext/Employees/Shubha.jpg";
+import Pruthvi from "../../public/Life@ridenext/Employees/Pruthvi.jpg";
 import Prasad from "../../public/Life@ridenext/Employees/Prasad.png";
 import MamathaM from "../../public/Life@ridenext/Employees/MamathaM.jpg";
 import { useState, useEffect } from "react";
@@ -55,6 +57,26 @@ export default function LifeAtRideNext() {
       role: "Lead",
       image: Ajit,
       message: `"I have been associated with RideNext Soft Solution for the past six years, where I have received ample opportunities to grow and contribute in the field of 5G radio technology. With the guidance of highly supportive team members and mentors, and the unwavering commitment of a management team that upholds strong human values, my journey has been both enriching and rewarding. I was entrusted with opportunities to showcase my talent in 5G radio integration across onsite and offshore projects, which significantly enhanced my expertise and broadened my professional perspective. RideNext Soft Solution has provided an environment that fosters innovation, collaboration, and excellence, making it a truly remarkable place to build a career."`,
+    },
+    {
+      name: "Shubha Rao",
+      role: "Tech Lead",
+      image: Shubha,
+      message: `"I began my journey with the company in October 2019 as a Technical Architect, contributing to the 4G HeNB GW project. This role provided me with a strong foundation in system architecture and telecom network design.
+Subsequently, I transitioned into the System Engineering team, where I took on the responsibility of authoring Feature Requirement Specifications for various 5G network entities, including the Distributed Unit (DU) and Central Unit (CU). During this phase, I deepened my understanding of next-generation network design and system-level requirements.
+In parallel, I expanded my expertise into the 5G Core domain, enhancing my end-to-end understanding of the 5G Syatem. I also actively participated in O-RAN standardization meetings, where I contributed by submitting change requests to improve and refine O-RAN specifications.
+Currently, I am involved in testing multiple features of 5G RAN product entities, ensuring their performance, reliability, and compliance with evolving standards.
+Overall, my journey in the company reflects continuous growth, cross-domain learning, and meaningful contributions to both product development and industry standardization.
+"`,
+    },
+    {
+      name: "Pruthvi",
+      role: "Lead",
+      image: Pruthvi,
+      message: `"Over the course of my journey in the RideNext organization, I have significantly evolved both technically and professionally, particularly in the 5G domain. I have developed strong expertise in 5G technologies and gained hands-on experience working across different layers of the system.
+I have been actively involved in EMS - System Integration Testing (SIT), where I contributed to validating end-to-end functionality and ensuring system stability. This has enhanced my analytical skills and ability to troubleshoot complex issues efficiently.
+Additionally, I have taken ownership of release progress handling, coordinating tasks, tracking deliverables, and ensuring timely completion of milestones. This responsibility has helped me improve my planning, communication, and stakeholder management skills.
+Overall, my journey reflects continuous learning, increased accountability, and a growing contribution toward successful project deliveries in the 5G domain."`,
     },
   ];
   const scrollingVoices = [...employeeVoices, ...employeeVoices];
