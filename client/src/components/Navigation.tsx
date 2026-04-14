@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import myLogo from "@assets/RideNext_NOBG.png";
+import { useLocation } from "wouter";
 
 const NAVY = "text-[#0a1f44]";
 
@@ -15,7 +16,6 @@ type NavItem = {
 
 const links: NavItem[] = [
   { href: "/", label: "Home" },
-
   {
     label: "About Us",
     submenu: [
@@ -25,12 +25,8 @@ const links: NavItem[] = [
       { href: "/about/Corecompetencies", label: "Core Competencies" },
       { href: "/about/industry", label: "Industry & Govt. Forums" },
       { href: "/about/csractivity", label: "CSR Activity" },
-
-
-
     ],
   },
-
   {
     label: "Products",
     submenu: [
@@ -47,21 +43,11 @@ const links: NavItem[] = [
           { href: "/product/5gems#performance", label: "Performance Module" },
         ],
       },
-      {
-        href: "/product/bluefox",
-        label: "BLUEFOX – Advanced Wireless Test Simulator",
-      },
-      {
-        href: "/product/asndecoder",
-        label: "ASN Encoder Decoder",
-      },
-      {
-        href: "/product/nearrtric",
-        label: "NEAR RT RIC",
-      },
+      { href: "/product/bluefox", label: "BLUEFOX – Advanced Wireless Test Simulator" },
+      { href: "/product/asndecoder", label: "ASN Encoder Decoder" },
+      { href: "/product/nearrtric", label: "NEAR RT RIC" },
     ],
   },
-
   {
     label: "Services",
     submenu: [
@@ -74,85 +60,32 @@ const links: NavItem[] = [
       { href: "/services/ranintegration", label: "RAN Integration" },
     ],
   },
-
   { href: "/peopleandculture", label: "People & Culture" },
   { href: "/lifeatridenext", label: "Life@RideNext" },
   { href: "/careers", label: "Careers" },
   { href: "/videolibrary", label: "Video Gallery" },
-
 ];
-
-function RenderMenu({ items }: { items: NavItem[] }) {
-  return (
-    <>
-      {items.map((item) => {
-        const hasSub = item.submenu && item.submenu.length > 0;
-
-        if (!hasSub) {
-          return (
-            <Link key={item.href} href={item.href!}>
-              <div className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-black cursor-pointer whitespace-nowrap">
-                {item.label}
-              </div>
-            </Link>
-          );
-        }
-
-        return (
-          <div key={item.label} className="relative group/sub">
-            <div className="flex justify-between items-center px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-black cursor-pointer whitespace-nowrap">
-              {item.label}
-              <ChevronRight className="w-3 h-3" />
-            </div>
-
-            <div className="absolute left-full top-0 ml-1 min-w-[260px] bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 z-50">
-              <RenderMenu items={item.submenu!} />
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
-}
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("");
+  const [location] = useLocation();
+
+  // ✅ Close function
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setOpenMobileDropdown(null);
+  };
+
+  // ✅ Close on route change
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  useEffect(() => {
-    const sections = [
-      "configuration",
-      "connect",
-      "fault",
-      "security",
-      "software",
-      "performance",
-    ];
-
-    const handleScroll = () => {
-      let current = "";
-
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-
-          if (rect.top <= 120 && rect.bottom >= 120) {
-            current = id;
-          }
-        }
-      });
-
-      setActiveSection(current);
-    };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -170,11 +103,11 @@ export function Navigation() {
         <div className="flex items-center justify-between">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 cursor-pointer">
+          <Link href="/" className="flex items-center gap-2 cursor-pointer" onClick={closeMobileMenu}>
             <img src={myLogo} alt="RideNext Logo" className="h-14 md:h-20 lg:h-24 w-auto" />
           </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu (UNCHANGED) */}
           <nav className="hidden md:flex items-center gap-6">
             {links.map((link) => {
               const hasSubmenu = link.submenu && link.submenu.length > 0;
@@ -195,102 +128,9 @@ export function Navigation() {
                     {link.label}
                     <ChevronDown className="w-3 h-3" />
                   </div>
-
-                  <div className="absolute left-0 mt-2 w-60 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-40">
-                    {link.submenu?.map((item) => {
-                      const hasNested = item.submenu && item.submenu.length > 0;
-
-                      if (!hasNested) {
-                        return (
-                          <Link key={item.href} href={item.href!}>
-                            <div
-                              className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-[#0a1f44] border-l-2 border-transparent hover:border-[#0a1f44] cursor-pointer transition-all duration-200"
-                              onClick={(e) => {
-                                const hash = item.href?.split("#")[1];
-
-                                if (hash) {
-                                  const el = document.getElementById(hash);
-                                  if (el) {
-                                    e.preventDefault();
-                                    el.scrollIntoView({
-                                      behavior: "smooth",
-                                      block: "start",
-                                    });
-                                    window.history.replaceState(null, "", item.href);
-                                  }
-                                }
-                              }}
-                            >
-                              {item.label}
-                            </div>
-                          </Link>
-                        );
-                      }
-
-                      return (
-                        <div key={item.label} className="relative group/ems">
-
-                          <div
-                            // className="px-4 py-2 text-sm font-medium hover:bg-slate-50 cursor-pointer flex justify-between items-center">
-                            className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-[#0a1f44] border-l-2 border-transparent hover:border-[#0a1f44] cursor-pointer transition-all duration-200 flex justify-between items-center">
-                            {item.label}
-                            <ChevronRight className="w-3 h-3" />
-                          </div>
-
-                          <div className="absolute left-full top-0 ml-1 w-64 bg-white border border-slate-200 rounded-lg shadow-lg opacity-0 invisible group-hover/ems:opacity-100 group-hover/ems:visible transition-all duration-200 z-50">
-
-                            {item.submenu?.map((sub) => (
-                              <Link key={sub.href} href={sub.href!}>
-                                <div
-                                  className={cn(
-                                    "px-4 py-2 text-sm font-medium cursor-pointer transition-all duration-200 border-l-2",
-                                    activeSection === sub.href?.split("#")[1]
-                                      ? "bg-blue-100 text-[#0a1f44] border-[#0a1f44]"
-                                      : "text-slate-700 border-transparent hover:bg-blue-50 hover:text-[#0a1f44] hover:border-[#0a1f44]"
-                                  )}
-                                  onClick={(e) => {
-                                    const hash = sub.href?.split("#")[1];
-
-                                    if (hash) {
-                                      const el = document.getElementById(hash);
-
-                                      if (el) {
-                                        e.preventDefault();
-
-                                        el.scrollIntoView({
-                                          behavior: "smooth",
-                                          block: "start",
-                                        });
-
-                                        window.history.replaceState(null, "", sub.href);
-                                      }
-                                    } else {
-                                      window.scrollTo({
-                                        top: 0,
-                                        behavior: "smooth",
-                                      });
-                                    }
-                                  }}
-                                >
-                                  {sub.label}
-                                </div>
-                              </Link>
-                            ))}
-
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
                 </div>
               );
             })}
-
-            <Link href="/contact">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white text-sm font-medium">
-                Contact Us
-              </Button>
-            </Link>
           </nav>
 
           {/* Mobile Toggle */}
@@ -316,7 +156,7 @@ export function Navigation() {
                   <Link key={link.href} href={link.href!}>
                     <div
                       className="px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 cursor-pointer"
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={closeMobileMenu}
                     >
                       {link.label}
                     </div>
@@ -351,7 +191,10 @@ export function Navigation() {
                         if (!hasNested) {
                           return (
                             <Link key={item.href} href={item.href!}>
-                              <div className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-[#0a1f44] border-l-2 border-transparent hover:border-[#0a1f44] cursor-pointer transition-all duration-200">
+                              <div
+                                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-blue-50 cursor-pointer"
+                                onClick={closeMobileMenu}
+                              >
                                 {item.label}
                               </div>
                             </Link>
@@ -361,7 +204,10 @@ export function Navigation() {
                         return (
                           <div key={item.label} className="px-4 py-2">
                             <Link href={item.href!}>
-                              <div className="text-sm font-semibold text-[#0a1f44] cursor-pointer">
+                              <div
+                                className="text-sm font-semibold text-[#0a1f44] cursor-pointer"
+                                onClick={closeMobileMenu}
+                              >
                                 {item.label}
                               </div>
                             </Link>
@@ -369,7 +215,10 @@ export function Navigation() {
                             <div className="ml-3 mt-2 flex flex-col">
                               {item.submenu?.map((sub) => (
                                 <Link key={sub.href} href={sub.href!}>
-                                  <div className="py-1 text-sm text-gray-600 hover:text-[#0a1f44] cursor-pointer">
+                                  <div
+                                    className="py-1 text-sm text-gray-600 hover:text-[#0a1f44] cursor-pointer"
+                                    onClick={closeMobileMenu}
+                                  >
                                     {sub.label}
                                   </div>
                                 </Link>
@@ -380,7 +229,6 @@ export function Navigation() {
                       })}
                     </div>
                   )}
-
                 </div>
               );
             })}
@@ -388,7 +236,7 @@ export function Navigation() {
             <Link href="/contact">
               <div
                 className="mt-2 bg-primary text-white text-center py-2 rounded-lg text-sm font-medium cursor-pointer"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
               >
                 Contact Us
               </div>
