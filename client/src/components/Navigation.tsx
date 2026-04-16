@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import myLogo from "@/assets/RideNext_NOBG.png";
+import myLogo from "../../public/RideNext_NOBG.png";
 import { useLocation } from "wouter";
 /* ---------- TYPES ---------- */
 type MegaSection = {
